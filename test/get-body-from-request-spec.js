@@ -9,13 +9,30 @@ describe("The getBodyFromRequest function", () => {
     });
 
     it('returns an empty string for no body', done => {
-        expect(getBodyFromRequest()).to.be.eql('')
+
+
+        getBodyFromRequest(fakeReq).then(res => {
+            if (res === '') {
+                done()
+            } else {
+                done('error no content')
+            }
+
+        })
+
+        fakeReq.emit('end')
 
 
     });
 
     it('returns the data read from the stream', done => {
-        expect.fail('please write this test');
+
+
+
+
+
+        fakeReq.emit('data')
+        fakeReq.emit('end')
 
     });
 });
